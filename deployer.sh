@@ -23,6 +23,7 @@ usage() {
     restart              restart all (Nginx, Supervisor)
     restartsupervisor    restart Supervisor
     restartnginx         restart Nginx
+    delete               delete the project setup
 EOF
 }
 
@@ -60,6 +61,7 @@ case $i in
     restart) get_project_details; restart_all_server; exit ;;
     restartsupervisor) get_project_details; restart_supervisor; exit ;;
     restartnginx) restart_nginx; exit ;;
+    delete) get_project_details; delete_project; exit ;;
 
 esac
 done

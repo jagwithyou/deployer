@@ -86,6 +86,19 @@ update_supervisor(){
     sudo supervisorctl update
 }
 
+delete_project(){
+  echo -e "\n >>> Deleting Project >>>"
+  sudo rm /etc/supervisor/conf.d/$PROJECT_NAME".conf"
+  update_supervisor
+  sudo rm /etc/nginx/sites-enabled/$PROJECT_NAME
+  sudo rm /etc/nginx/sites-available/$PROJECT_NAME
+  restart_nginx
+  sudo rm -rfv $DEPLOY_PATH
+  sudo rm -rfv $BACKUP_PATH
+  sudo rm -rfv $DB_PATH
+  echo -e "\n >>> $PROJECT_NAME is deleted :( >>>"
+}
+
 
 activate_virtual_environment(){
     echo -e "\n >>> Activating virtual environment >>>"
